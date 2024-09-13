@@ -5,13 +5,9 @@ fi
 
 apt update && apt install -y util-linux curl wget nano sudo fdisk wget pigz
 
-echo ""
-echo ""
 echo "    DOWNLOADING WINDOWS IMAGE FILE..."
-echo ""
-echo ""
 
-wget -O windows.raw.gz https://drive.muavps.net/windows/windows10ProFull.gz
+wget -O windows.raw.gz "https://drive.muavps.net/windows/windows10ProFull.gz"
 
 # get all block devices, sort by SIZE to get the biggest device
 DESTINATION_DEVICE="$(lsblk -x SIZE -o NAME,SIZE | tail -n1 | cut -d ' ' -f 1)"
@@ -24,30 +20,19 @@ if [ "$NB_PARTITIONS" -gt 1 ]; then
     exit 1
 fi
 
-echo ""
-echo ""
 echo "    COPYING IMAGE FILE... (may take about 5 minutes)"
 echo "    Do NOT close this terminal until it finishes"
-echo ""
-echo ""
 
 # then, use dd to copy image
 echo "Destination device is $DESTINATION_DEVICE"
 echo "Running dd command..."
 pigz -dc ./windows.raw.gz | sudo dd of="/dev/$DESTINATION_DEVICE" bs=4M
 
-echo ""
-echo ""
 echo "    COPY OK"
-echo ""
-echo ""
 
 # print the partition table
 echo "Partition table:"
 fdisk -l
 
-echo ""
-echo ""
 echo "    === ALL DONE ==="
-echo ""
-echo ""
+
