@@ -7,7 +7,7 @@ apt update && apt install -y util-linux curl wget nano sudo fdisk wget pigz
 
 echo "    DOWNLOADING WINDOWS IMAGE FILE..."
 
-wget -O windows.raw.gz "https://drive.muavps.net/windows/windows10ProFull.gz"
+wget -O windows.gz "https://drive.muavps.net/windows/windows10ProFull.gz"
 
 # get all block devices, sort by SIZE to get the biggest device
 DESTINATION_DEVICE="$(lsblk -x SIZE -o NAME,SIZE | tail -n1 | cut -d ' ' -f 1)"
@@ -26,7 +26,7 @@ echo "    Do NOT close this terminal until it finishes"
 # then, use dd to copy image
 echo "Destination device is $DESTINATION_DEVICE"
 echo "Running dd command..."
-pigz -dc ./windows.raw.gz | sudo dd of="/dev/$DESTINATION_DEVICE" bs=4M
+pigz -dc ./windows.gz | sudo dd of="/dev/$DESTINATION_DEVICE" bs=4M
 
 echo "    COPY OK"
 
