@@ -1,8 +1,3 @@
-#!/bin/bash
-
-# wget -qO- https://raw.githubusercontent.com/huynguyen2992008/cailon/main/win10ggcloud.sh | sudo bash
-
-IMAGE_URL="https://drive.muavps.net/windows/windows10ProFull.gz"
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
