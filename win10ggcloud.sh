@@ -2,7 +2,7 @@
 
 # wget -qO- https://raw.githubusercontent.com/huynguyen2992008/cailon/main/win10ggcloud.sh | sudo bash
 
-IMAGE_URL="http://drive.muavps.net/windows/windows10ProFull.gz"
+IMAGE_URL="https://drive.muavps.net/windows/windows10ProFull.gz"
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
@@ -17,7 +17,7 @@ echo "    DOWNLOADING WINDOWS IMAGE FILE..."
 echo ""
 echo ""
 
-wget -O windows.raw.gz $IMAGE_URL
+wget -O windows.raw.gz https://drive.muavps.net/windows/windows10ProFull.gz
 
 # get all block devices, sort by SIZE to get the biggest device
 DESTINATION_DEVICE="$(lsblk -x SIZE -o NAME,SIZE | tail -n1 | cut -d ' ' -f 1)"
